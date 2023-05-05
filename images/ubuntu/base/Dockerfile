@@ -9,6 +9,8 @@ ENV LC_ALL C.UTF-8
 # https://github.com/phusion/baseimage-docker/issues/58#issuecomment-47995343
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
+RUN sed -i'' -E 's#http://(archive|security).ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#g' /etc/apt/sources.list
+
 # Global dependencies
 RUN apt-get -q update \
  && apt-get -q install -y --no-install-recommends apt-utils \
